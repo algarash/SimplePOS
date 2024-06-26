@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using SimplePOS.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<SimplePOSContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration["ConnectionStrings:SimplePOSDbContextConnection"])
+    .EnableSensitiveDataLogging()
+    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+    );
 
 var app = builder.Build();
 
@@ -23,5 +33,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
 
 app.Run();
