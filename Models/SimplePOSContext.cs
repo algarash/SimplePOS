@@ -28,6 +28,17 @@ namespace SimplePOS.Models
                 .HasOne(oi => oi.Product)
                 .WithMany(p => p.OrderItems)
                 .HasForeignKey(oi => oi.ProductId);
+
+            var CategoryList = new Category[] {
+                new Category{CategoryId=1, CategoryName= "Milk", CategoryDescription= "Milk from a cow lol"}
+            };
+            modelBuilder.Entity<Category>().HasData(CategoryList);
+
+            var ProductList = new Product[] {
+                new Product{ProductId=1, ProductName = "Milk", ProductDescription = "Milk from a cow lol", ProductImageUrl = "https://www.heritagefoods.in/blog/wp-content/uploads/2020/12/shutterstock_539045662.jpg", CategoryId = 1}
+            };
+            modelBuilder.Entity<Product>().HasData(ProductList);
+
         }
 
     }

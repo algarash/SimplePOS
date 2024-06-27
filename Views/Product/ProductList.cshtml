@@ -1,0 +1,16 @@
+﻿@model SimplePOS.ViewModels.ProductListViewModel
+
+    <html>
+    <head><title></title></head>
+    <body>
+        <h3>@Model.CurrentCategory</h3>
+    @foreach (var product in Model.Products)
+    {
+        <div>
+            <h2>@product.ProductName</h2>
+            <h2>@product.ProductDescription</h2>
+            <h2>@product.Category.CategoryName</h2>
+        </div>
+    }
+    </body>
+</html>

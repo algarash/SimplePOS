@@ -1,10 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using SimplePOS.Models;
+using SimplePOS.Models.Repositories.Implementations;
+using SimplePOS.Models.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
 
 builder.Services.AddDbContext<SimplePOSContext>(options =>
     options.UseSqlServer(
