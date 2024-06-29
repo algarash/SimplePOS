@@ -3,5 +3,6 @@
     public interface ICategoryRepository
     {
         IEnumerable<Category> AllCategories { get; }
+        public void NewCategory(Category category);
     }
 }

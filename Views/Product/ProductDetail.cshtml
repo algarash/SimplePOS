@@ -1,0 +1,28 @@
+﻿@model Product
+
+<div class="container">
+    <h1 class="my-4">@Model.ProductName</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <img class="img-fluid" src="@Model.ProductImageUrl" alt="@Model.ProductName">
+        </div>
+        <div class="col-md-6">
+            <h3 class="my-3">Product Description</h3>
+            <p>@Model.ProductDescription</p>
+            <h3 class="my-3">Product Details</h3>
+            <ul>
+                <li>Price: $@Model.Price</li>
+                <!-- Add more details as needed -->
+            </ul>
+            <a style="background-color:dodgerblue" asp-controller="Product" asp-action="Update" asp-route-id="@Model.ProductId" class="btn btn-primary">Update product</a>
+            <a style="background-color:red" asp-controller="Product" asp-action="Delete" asp-route-id="@Model.ProductId" class="btn btn-primary" onclick="return confirmDelete();">Delete product</a>
+            <a style="background-color:forestgreen" asp-controller="Product" asp-action="Create" class="btn btn-primary">Add new product</a>
+            <a asp-controller="Product" asp-action="ProductList" class="btn btn-primary">Back to Products list</a>
+        </div>
+    </div>
+</div>
+<script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this product?');
+    }
+</script>

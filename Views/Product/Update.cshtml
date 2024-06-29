@@ -1,0 +1,55 @@
+﻿@model ProductCreateViewModel
+
+
+@if (TempData["ProductUpdated"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong> @TempData["ProductUpdated"]
+    </div>
+}
+@if (TempData["ErrorProductUpdated"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Faild!</strong> @TempData["ErrorProductUpdated"]
+    </div>
+}
+<div class="container">
+    <h1>Update Product</h1>
+    <form asp-action="Update" asp-controller="Product" method="post">
+        <div class="form-group">
+            <label asp-for="Product.ProductName">Product Name:</label>
+            <input asp-for="Product.ProductName" class="form-control" />
+            <span asp-validation-for="Product.ProductName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Product.ProductDescription">Product Description:</label>
+            <textarea asp-for="Product.ProductDescription" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="Product.Price">Price:</label>
+            <input asp-for="Product.Price" type="number" step="0.01" class="form-control" />
+            <span asp-validation-for="Product.Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Product.ProductImageUrl">Product Image Url (Optional):</label>
+            <input asp-for="Product.ProductImageUrl" class="form-control" />
+            <span asp-validation-for="Product.ProductImageUrl" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center my-4">
+            <div class="form-group">
+                <label asp-for="Product.CategoryId">Category:</label>
+                <select asp-for="Product.CategoryId" class="form-control">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.CategoryId">@category.CategoryName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <input type="hidden" asp-for="Product.ProductId" />
+        <button type="submit" value="Update" class="btn btn-primary">Update</button>
+        <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@Model.Product.ProductId" class="btn btn-primary">Back to Products Detail</a>
+    </form>
+</div>
+

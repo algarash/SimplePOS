@@ -1,16 +1,43 @@
 ﻿@model ProductListViewModel
 
-    <html>
-    <head><title></title></head>
-    <body>
-        <h3>@Model.CurrentCategory</h3>
-    @foreach (var product in Model.Products)
-    {
-        <div>
-            <h2>@product.ProductName</h2>
-            <h2>@product.ProductDescription</h2>
-            <h2>@product.Category.CategoryName</h2>
-        </div>
-    }
-    </body>
-</html>
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center my-4">
+        <h1 class="mb-0">@Model.CurrentCategory</h1>
+        @if (TempData["ProductCreated"] != null)
+        {
+            <div class="alert alert-success">
+                <strong>Success!</strong> @TempData["ProductCreated"]
+            </div>
+        }
+        @if (TempData["ProductDeleted"] != null)
+        {
+            <div class="alert alert-warning">
+                <strong>Success!</strong> @TempData["ProductDeleted"]
+            </div>
+        }
+        <a style="background-color:forestgreen" asp-controller="Product" asp-action="Create" class="btn btn-primary">Add new product</a>
+    </div>
+    <div class="row">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.ProductId">
+                        <img class="card-img-top" src="@product.ProductImageUrl" alt="@product.ProductName">
+                    </a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.ProductId">@product.ProductName</a>
+                        </h4>
+                        <h5>$@product.Price</h5>
+                        <p class="card-text">@product.ProductDescription</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">★ ★ ★ ★ ☆</small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

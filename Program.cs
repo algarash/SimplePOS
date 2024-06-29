@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SimplePOS.Models;
 using SimplePOS.Models.Repositories.Implementations;
 using SimplePOS.Models.Repositories.Interfaces;
+using YuusufPieShop.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,8 +39,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-
+    pattern: "{controller=Product}/{action=ProductList}/{id?}");
 
 app.Run();

@@ -11,5 +11,19 @@ namespace SimplePOS.Models.Repositories.Implementations
         }
         public IEnumerable<Category> AllCategories =>
             _context.Categories.OrderBy(c => c.CategoryName);
+
+        public void NewCategory(Category category)
+        {
+            try
+            {
+                _context.Categories.Add(category);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+           
+        }
     }
 }
