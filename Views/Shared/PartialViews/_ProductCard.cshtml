@@ -1,0 +1,19 @@
+﻿@model Product
+
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100">
+        <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@Model.ProductId">
+            <img class="card-img-top" src="@Model.ProductImageUrl" alt="@Model.ProductName">
+        </a>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a style="text-decoration: none;" asp-controller="Product" asp-action="ProductDetail" asp-route-id="@Model.ProductId">@Model.ProductName</a>
+            </h4>
+            <h5>$@Model.Price</h5>
+            <p class="card-text">@Model.ProductDescription</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">★ ★ ★ ★ ☆</small>
+        </div>
+    </div>
+</div>
