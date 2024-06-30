@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SimplePOS.Models;
 using SimplePOS.Models.Repositories.Interfaces;
 using SimplePOS.ViewModels;
+using System.IO.Pipelines;
 
 namespace SimplePOS.Controllers
 {
@@ -20,10 +21,26 @@ namespace SimplePOS.Controllers
             _context = context;
         }
 
-        public IActionResult ProductList()
+        public IActionResult ProductList(string category)
         {
+            IEnumerable<Product> products;
+            string? currentCategory;
+
+            if (string.IsNullOrEmpty(category))
+            {
+                products = _productRepository.AllProducts.OrderByDescending(p => p.ProductId);
+                currentCategory = "All products";
+            }
+            else
+            {
+                products = _productRepository.AllProducts.Where(p =>
+                    p.Category?.CategoryName == category)
+                        .OrderByDescending(p => p.ProductId);
+                currentCategory = _categoryRepository.AllCategories.FirstOrDefault(c =>
+                c.CategoryName == category)?.CategoryName;
+            }
             ProductListViewModel productListViewModel = new ProductListViewModel(
-                _productRepository.AllProducts, "All Products");
+                products, currentCategory);
 
             return View(productListViewModel);
         }
