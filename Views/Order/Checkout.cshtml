@@ -1,0 +1,89 @@
+﻿@* @model CustomerListViewModel
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+@if (TempData["OrderCreated"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong> @TempData["OrderCreated"]
+    </div>
+}
+@if (TempData["OrderError"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error!</strong> @TempData["OrderError"]
+    </div>
+}
+<h1 class="text-center">Checkout</h1>
+
+<div class="d-flex justify-content-center align-items-center vh-50">
+    <div class="card w-50">
+        <div class="card-body">
+            <form asp-action="Checkout" asp-asp-route-customerId="" method="post">
+                <div class="form-group">
+                    <label for="CustomerId">Select Customer</label>
+                    <div class="d-flex">
+                        <select asp-for="Customer.CustomerId" asp-items="@(new SelectList(Model.Customers, "CustomerId", "CustomerFirstName"))" class="form-control" style="width: auto; margin-right: 10px;">
+                            <option value="">-- Select Customer --</option>
+                        </select>
+                        <a asp-controller="Customer" asp-action="AddCustomer" class="btn btn-primary btn-green">+ Add new customer</a>
+                    </div>
+                </div>
+
+                <br />
+
+                <button type="submit"  class="btn btn-primary">Submit Order</button>
+            </form>
+        </div>
+    </div>
+</div> *@
+
+@model CustomerListViewModel
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+@if (TempData["OrderCreated"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong> @TempData["OrderCreated"]
+    </div>
+}
+@if (TempData["OrderError"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error!</strong> @TempData["OrderError"]
+    </div>
+}
+<h1 class="text-center">Checkout</h1>
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card w-50">
+        <div class="card-body">
+            <form asp-action="Checkout" method="post" id="checkoutForm">
+                <div class="form-group">
+                    <label for="SelectedCustomerId">Select Customer</label>
+                    <div class="d-flex">
+                        <select asp-for="SelectedCustomerId" asp-items="@(new SelectList(Model.Customers, "CustomerId", "CustomerFirstName"))" class="form-control" id="customerSelect" style="width: auto; margin-right: 10px;">
+                            <option value="">-- Select Customer --</option>
+                        </select>
+                        <a asp-controller="Customer" asp-action="AddCustomer" class="btn btn-primary btn-green">+ Add new customer</a>
+                    </div>
+                </div>
+               @*  <input asp-for="Customer.CustomerFirstName" type="hidden" name="CustomerFirstName" id="CustomerFirstName" />
+                <input asp-for="Customer.CustomerLastName" type="hidden" name="CustomerLastName" id="CustomerLastName" />
+                *@ <br />
+
+                <button type="submit" class="btn btn-primary">Submit Order</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('checkoutForm').addEventListener('submit', function (e) {
+        var customerId = document.getElementById('customerSelect').value;
+        this.action = this.action + '?customerId=' + customerId;
+    });
+</script>

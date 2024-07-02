@@ -39,14 +39,20 @@
         <hr />
         <div class="row">
             <div class="col text-end">
-                <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                <form method="get">
                     <input type="hidden" name="productId" value="" />
-                    <button type="submit" class="btn btn-secondary btn-lg btn-green">Checkout</button>
+                    <button type="submit" class="btn btn-secondary btn-lg btn-green">
+                        <img src="~/images/cartc.png" alt="checkout" width="30" height="30" />
+                        <a style="color:white" class="link-text" asp-controller="Order" asp-action="Checkout">Checkout</a>
+                    </button>
                 </form>
             </div>
             <div class="col text-start">
-                <form asp-controller="Cart" asp-action="ClearCart" method="post">
-                    <button type="submit" class="btn btn-secondary btn-lg btn-red" onclick="return confirmCartClear();">Clear Cart</button>
+                <form method="post">
+                    <button type="submit" class="btn btn-secondary btn-lg btn-red" onclick="return confirmCartClear();">
+                        <img src="~/images/cart.png" alt="clear" width="30" height="30" />
+                        <a class="link-text" asp-controller="Cart" asp-action="ClearCart">Clear</a>
+                    </button>
                 </form>
             </div>
         </div>

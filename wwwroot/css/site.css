@@ -16,6 +16,10 @@ html {
   position: relative;
   min-height: 100%;
 }
+.link-text{
+    text-decoration: none;
+    color: black;
+}
 
 body {
   margin-bottom: 60px;

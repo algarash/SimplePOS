@@ -1,0 +1,40 @@
+﻿@model CustomerListViewModel
+
+@{
+    ViewData["Title"] = "Upadet Customer";
+}
+
+<h1>Update Customer</h1>
+@if (TempData["CustomerUpdated"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong> @TempData["CustomerUpdated"]
+    </div>
+}
+@if (TempData["ErrorCustomerUpdated"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Faild!</strong> @TempData["ErrorCustomerUpdated"]
+    </div>
+}
+<form asp-action="UpdateCustomer" method="post">
+    <div class="form-group">
+        <label asp-for="Customer.CustomerFirstName" class="control-label"></label>
+        <input asp-for="Customer.CustomerFirstName" class="form-control" />
+        <span asp-validation-for="Customer.CustomerFirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Customer.CustomerLastName" class="control-label"></label>
+        <input asp-for="Customer.CustomerLastName" class="form-control" />
+        <span asp-validation-for="Customer.CustomerLastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Customer.CustomerPhoto" class="control-label"></label>
+        <input asp-for="Customer.CustomerPhoto" class="form-control" />
+        <span asp-validation-for="Customer.CustomerPhoto" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="Customer.CustomerId" />
+    <br />
+    <button type="submit" class="btn btn-primary btn-green">Update Customer</button>
+    <a asp-controller="Customer" asp-action="CustomerList" class="btn btn-primary btn-sm">Back to List</a>
+</form>
