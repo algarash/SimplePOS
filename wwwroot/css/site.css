@@ -20,3 +20,23 @@ html {
 body {
   margin-bottom: 60px;
 }
+.btn-green {
+    background-color: green;
+    border-color: green;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.btn-red {
+    background-color: red;
+    border-color: darkred;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.btn-green:hover {
+        background-color: dodgerblue ;
+        border-color: blue;
+}
+.btn-red:hover {
+    background-color: darkred;
+    border-color: indianred;
+}

@@ -1,6 +1,5 @@
 ﻿@model ProductListViewModel
-
-<div class="container">
+<div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center my-4">
         <h1 class="mb-0">@Model.CurrentCategory</h1>
         @if (TempData["ProductCreated"] != null)
@@ -15,13 +14,54 @@
                 <strong>Success!</strong> @TempData["ProductDeleted"]
             </div>
         }
-        <a style="background-color:forestgreen" asp-controller="Product" asp-action="Create" class="btn btn-primary">Add new product</a>
-    </div>
-    <div class="row">
-        @foreach (var product in Model.Products)
+        @if (TempData["ProductAdded"] != null)
         {
-            <partial name="PartialViews/_ProductCard" model="product"></partial>
+            <div class="alert alert-success">
+                <strong>Added!</strong> @TempData["ProductAdded"]
+            </div>
         }
+        @if (TempData["ProductRemoved"] != null)
+        {
+            <div class="alert alert-danger">
+                <strong>Removed!</strong> @TempData["ProductRemoved"]
+            </div>
+        }
+        @if (TempData["CleanCart"] != null)
+        {
+            <div class="alert alert-warning">
+                <strong>Clean!</strong> @TempData["CleanCart"]
+            </div>
+        }
+        <a asp-controller="Product" asp-action="Create" class="btn btn-primary btn-green">+ Add new product</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row g-3">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                        <!-- 4 products per row on large screens -->
+                        <partial name="PartialViews/_ProductCard" model="product"></partial>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Cart menu section column -->
+    @*     @if (TempData["ProductAdded"] != null || TempData["ProductRemoved"] != null)
+        { *@
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        Cart Menu
+                    </div>
+                    <div class="card-body">
+                        @await Component.InvokeAsync("CartMenu")
+                    </div>
+                </div>
+            </div>
+        @* } *@
+       
     </div>
 </div>
-

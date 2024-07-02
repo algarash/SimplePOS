@@ -12,13 +12,14 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+builder.Services.AddScoped<ICartRepository, CartRepository>(sp => CartRepository.GetCart(sp));
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDbContext<SimplePOSContext>(options =>
     options.UseSqlServer(
         builder.Configuration["ConnectionStrings:SimplePOSDbContextConnection"])
-    .EnableSensitiveDataLogging()
-    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
-    );
+    .EnableSensitiveDataLogging());
 
 var app = builder.Build();
 
@@ -32,6 +33,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 app.UseStaticFiles();
+app.UseSession();
 
 app.UseRouting();
 

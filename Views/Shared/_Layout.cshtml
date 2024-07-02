@@ -28,13 +28,14 @@
                         </li>
                         @await Component.InvokeAsync("CategoryMenu")
                     </ul>
-                </div>
-
+                    @await Component.InvokeAsync("CartSummary")
+                 </div>
+                
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container-fluid">
+        <main role="main" class="flex-shrink-0">
             @RenderBody()
         </main>
     </div>

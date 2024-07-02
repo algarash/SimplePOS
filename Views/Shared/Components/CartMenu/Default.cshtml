@@ -1,0 +1,58 @@
+﻿@model CartMenuViewModel
+
+<div class="cart-section">
+    @foreach (var line in Model.CartItems)
+    {
+        <div class="card shopping-cart-card mb-2">
+            <div class="row g-0">
+                <div class="col-4">
+                    <img src="@line.Product.ProductImageUrl" class="img-fluid rounded-start" />
+                </div>
+                <div class="col-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@line.Quantity x @line.Product.Price</h5>
+                        <div class="d-flex justify-content-between">
+                            <h6>@line.Product.ProductDescription</h6>
+                            <h2 class="text-end">@((line.Quantity * line.Product.Price).ToString("c"))</h2>
+                        </div>
+                        <div class="input-group">
+                            <form asp-controller="Cart" asp-action="RemoveFromCart" method="post">
+                                <input type="hidden" name="productId" value="@line.Product.ProductId" />
+                                <button type="submit" name="changeQuantity" value="decrement" class="btn btn-secondary btn-sm btn-red">-</button>
+                            </form>
+                            <span class="mx-2">@line.Quantity</span>
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                <input type="hidden" name="productId" value="@line.Product.ProductId" />
+                                <button type="submit" name="changeQuantity" value="increment" class="btn btn-secondary btn-sm btn-green">+</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="card shopping-cart-card p-3 mt-3">
+        <div class="row">
+            <h4 class="col">Total:</h4>
+            <h4 class="col text-end">@Model.CartTotalPrice.ToString("c")</h4>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col text-end">
+                <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                    <input type="hidden" name="productId" value="" />
+                    <button type="submit" class="btn btn-secondary btn-lg btn-green">Checkout</button>
+                </form>
+            </div>
+            <div class="col text-start">
+                <form asp-controller="Cart" asp-action="ClearCart" method="post">
+                    <button type="submit" class="btn btn-secondary btn-lg btn-red" onclick="return confirmCartClear();">Clear Cart</button>
+                </form>
+            </div>
+        </div>
+</div>
+    <script>
+        function confirmCartClear() {
+            return confirm('Are you sure you want to clear cart?');
+        }
+    </script>

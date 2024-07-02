@@ -16,7 +16,7 @@
             </ul>
             <a style="background-color:dodgerblue" asp-controller="Product" asp-action="Update" asp-route-id="@Model.ProductId" class="btn btn-primary">Update product</a>
             <a style="background-color:red" asp-controller="Product" asp-action="Delete" asp-route-id="@Model.ProductId" class="btn btn-primary" onclick="return confirmDelete();">Delete product</a>
-            <a style="background-color:forestgreen" asp-controller="Product" asp-action="Create" class="btn btn-primary">Add new product</a>
+            <a asp-controller="Product" asp-action="Create" class="btn btn-primary btn-green">Add new product</a>
             <a asp-controller="Product" asp-action="ProductList" class="btn btn-primary">Back to Products list</a>
         </div>
     </div>

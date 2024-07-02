@@ -1,4 +1,5 @@
-﻿using SimplePOS.Models.Repositories.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SimplePOS.Models.Repositories.Interfaces;
 
 namespace SimplePOS.Models.Repositories.Implementations
 {
