@@ -1,55 +1,76 @@
-<h1>SimplePOS</h1>  is a straightforward and efficient Point of Sale (POS) application built using ASP.NET Core MVC. This repository aims to provide a user-friendly solution for managing sales transactions, customer information, and inventory in a retail environment.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SimplePOS</title>
+</head>
+<body>
+    <h1>SimplePOS</h1>
+    <p>SimplePOS is a straightforward and efficient Point of Sale (POS) application built using ASP.NET Core MVC. This repository aims to provide a user-friendly solution for managing sales transactions, customer information, and inventory in a retail environment.</p>
 
+    <h1>Features</h1>
+    <ul>
+        <li>Product Management: Add, update, and delete products.</li>
+        <li>Customer Management: Manage customer details and view their purchase history.</li>
+        <li>Order Management: Create and process sales orders, view details.</li>
+        <li>Cart Functionality: Add products to the cart and checkout seamlessly.</li>
+        <li>Responsive Design: User-friendly interface that works on various devices.</li>
+    </ul>
 
-<h1>Features</h1>
-1. Product Management: Add, update, and delete products.
-2. Customer Management: Manage customer details and view their purchase history.
-3. Order Management: Create and process sales orders, view details.
-4. Cart Functionality: Add products to the cart and checkout seamlessly.
-5. Responsive Design: User-friendly interface that works on various devices.
+    <h1>Getting Started</h1>
+    <h2>Prerequisites</h2>
+    <p>Before you start, ensure you have the following installed on your machine:</p>
+    <ul>
+        <li>.NET 8.0 SDK</li>
+        <li>Visual Studio 2022 or Visual Studio Code</li>
+    </ul>
 
-<h1>Getting Started</h1>
+    <h2>Installation</h2>
+    <ol>
+        <li>Clone the repository:
+            <pre>
+git clone https://github.com/algarash/SimplePOS.git
+cd SimplePOS
+            </pre>
+        </li>
+        <li>Restore NuGet packages:
+            <pre>dotnet restore</pre>
+        </li>
+        <li>Build the project:
+            <pre>dotnet build</pre>
+        </li>
+        <li>Run the application:
+            <pre>dotnet run</pre>
+        </li>
+    </ol>
 
-<h1>Prerequisites</h1>
-Before you start, ensure you have the following installed on your machine:
-1. .NET 8.0 SDK
-2. Visual Studio 2022 or Visual Studio Code
+    <h1>NuGet Packages</h1>
+    <p>The following NuGet packages are used in this project:</p>
+    <ul>
+        <li>Microsoft.EntityFrameworkCore: For database operations and Entity Framework Core functionalities.</li>
+        <li>Microsoft.EntityFrameworkCore.SqlServer: For SQL Server database provider.</li>
+        <li>Microsoft.EntityFrameworkCore.Tools: For EF Core command-line tools.</li>
+        <li>Microsoft.AspNetCore.Mvc: For building the MVC structure.</li>
+        <li>Microsoft.AspNetCore.Identity.EntityFrameworkCore: For Identity and authentication.</li>
+        <li>Microsoft.Extensions.DependencyInjection: For dependency injection.</li>
+        <li>AutoMapper.Extensions.Microsoft.DependencyInjection: For object mapping.</li>
+        <li>Newtonsoft.Json: For JSON serialization and deserialization.</li>
+    </ul>
 
-<h1>Installation</h1>
+    <h1>Dependencies</h1>
+    <ul>
+        <li>Entity Framework Core: Used for database operations.</li>
+        <li>ASP.NET Core Identity: Provides authentication and authorization functionalities.</li>
+        <li>SqlServer: As the System Database.</li>
+    </ul>
 
-1. Clone the repository:
-   git clone https://github.com/algarash/SimplePOS.git
-   cd SimplePOS
-2. Restore NuGet packages:
-  dotnet restore
-3. Build the project:
-  dotnet build
-4. Run the application:
-   dotnet run
+    <h1>Contributing</h1>
+    <p>We welcome contributions! Please fork the repository and submit a pull request with your changes.</p>
 
-   
-<h1>NuGet Packages</h1>
-1. The following NuGet packages are used in this project:
-2. Microsoft.EntityFrameworkCore: For database operations and Entity Framework Core functionalities.
-3. Microsoft.EntityFrameworkCore.SqlServer: For SQL Server database provider.
-4. Microsoft.EntityFrameworkCore.Tools: For EF Core command-line tools.
-5. Microsoft.AspNetCore.Mvc: For building the MVC structure.
-6. Microsoft.AspNetCore.Identity.EntityFrameworkCore: For Identity and authentication.
-7. Microsoft.Extensions.DependencyInjection: For dependency injection.
-8. AutoMapper.Extensions.Microsoft.DependencyInjection: For object mapping.
-9. Newtonsoft.Json: For JSON serialization and deserialization.
+    <h1>License</h1>
+    <p>This project is licensed under the MIT License. See the LICENSE file for more details.</p>
 
-<h1>Dependencies</h1>
-1- Entity Framework Core: Used for database operations.
-2-  ASP.NET Core Identity: Provides authentication and authorization functionalities.
-3-  SqlServer : as the System Database
-
-
-<h1>Contributing</h1>
-We welcome contributions! Please fork the repository and submit a pull request with your changes.
-
-<h1>License</h1>
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
-<h1>Contact</h1>
-For any inquiries or feedback, please contact yousefalgarash@gmail.com.
+    <h1>Contact</h1>
+    <p>For any inquiries or feedback, please contact <a href="mailto:yousefalgarash@gmail.com">yousefalgarash@gmail.com</a>.</p>
+</body>
+</html>
