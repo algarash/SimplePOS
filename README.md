@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>SimplePOS</title>
-</head>
-<body>
     <h1>SimplePOS</h1>
     <p>SimplePOS is a straightforward and efficient Point of Sale (POS) application built using ASP.NET Core MVC. This repository aims to provide a user-friendly solution for managing sales transactions, customer information, and inventory in a retail environment.</p>
 
@@ -72,5 +65,3 @@ cd SimplePOS
 
     <h1>Contact</h1>
     <p>For any inquiries or feedback, please contact <a href="mailto:yousefalgarash@gmail.com">yousefalgarash@gmail.com</a>.</p>
-</body>
-</html>
