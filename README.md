@@ -3,7 +3,7 @@ SimplePOS is a straightforward and efficient Point of Sale (POS) application bui
 
 <h1>Features</h1>
 <ul>
-        <li>Product Management: Add, update, and delete products.</li>
+        <li>Product and Category Management: Add, update, and delete products.</li>
         <li>Customer Management: Manage customer details and view their purchase history.</li>
         <li>Order Management: Create and process sales orders, view details.</li>
         <li>Cart Functionality: Add products to the cart and checkout seamlessly.</li>
