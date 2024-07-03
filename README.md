@@ -2,18 +2,18 @@
 
 
 <h1>Features</h1>
-Product Management: Add, update, and delete products.
-Customer Management: Manage customer details and view their purchase history.
-Order Management: Create and process sales orders, view details.
-Cart Functionality: Add products to the cart and checkout seamlessly.
-Responsive Design: User-friendly interface that works on various devices.
+1. Product Management: Add, update, and delete products.
+2. Customer Management: Manage customer details and view their purchase history.
+3. Order Management: Create and process sales orders, view details.
+4. Cart Functionality: Add products to the cart and checkout seamlessly.
+5. Responsive Design: User-friendly interface that works on various devices.
 
 <h1>Getting Started</h1>
 
 <h1>Prerequisites</h1>
 Before you start, ensure you have the following installed on your machine:
-.NET 8.0 SDK
-Visual Studio 2022 or Visual Studio Code
+1. .NET 8.0 SDK
+2. Visual Studio 2022 or Visual Studio Code
 
 <h1>Installation</h1>
 
@@ -40,9 +40,9 @@ Visual Studio 2022 or Visual Studio Code
 9. Newtonsoft.Json: For JSON serialization and deserialization.
 
 <h1>Dependencies</h1>
-- Entity Framework Core: Used for database operations.
-- ASP.NET Core Identity: Provides authentication and authorization functionalities.
-- SqlServer : as the System Database
+1- Entity Framework Core: Used for database operations.
+2-  ASP.NET Core Identity: Provides authentication and authorization functionalities.
+3-  SqlServer : as the System Database
 
 
 <h1>Contributing</h1>
