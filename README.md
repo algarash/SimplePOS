@@ -9,7 +9,7 @@ SimplePOS is a straightforward and efficient Point of Sale (POS) application bui
         <li>Cart Functionality: Add products to the cart and checkout seamlessly.</li>
         <li>Responsive Design: User-friendly interface that works on various devices.</li>
  </ul>
- <img src="images/overview.png" alt="SimplePOS Overview" style="width:100%;">
+ <img src="delete.png" alt="SimplePOS Overview" style="width:100%;">
 
 <h1>Getting Started</h1>
 <h2>Prerequisites</h2>
