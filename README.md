@@ -1,5 +1,5 @@
 <h1>SimplePOS</h1>
-SimplePOS is a straightforward and efficient Point of Sale (POS) application built using ASP.NET Core MVC. This repository aims to provide a user-friendly solution for managing sales transactions, customer information, and inventory in a retail environment.
+SimplePOS is a straightforward and efficient Point of Sale (POS) application built using ASP.NET Core MVC and Razor Pages. This repository aims to provide a user-friendly solution for managing sales transactions, customer information, and inventory in a retail environment.
 
 <h1>Project Interfaces Overview</h1>
     <table>
