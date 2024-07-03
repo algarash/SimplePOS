@@ -1,6 +1,20 @@
 <h1>SimplePOS</h1>
 SimplePOS is a straightforward and efficient Point of Sale (POS) application built using ASP.NET Core MVC. This repository aims to provide a user-friendly solution for managing sales transactions, customer information, and inventory in a retail environment.
 
+<h1>Project Interfaces Overview</h1>
+    <table>
+        <tr>
+            <td><img src="ProjectImages/ProjectOverview.png" alt="SimplePOS Overview" style="width:100%;"></td>
+            <td><img src="ProjectImages/ProductDetail.png" alt="SimplePOS Product Detail" style="width:100%;"></td>
+        </tr>
+        <tr>
+            <td><img src="ProjectImages/CustomerList.png" alt="SimplePOS Customer List" style="width:100%;"></td>
+            <td><img src="ProjectImages/OrderView.png" alt="SimplePOS Order View" style="width:100%;"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><img src="ProjectImages/OrderDetail.png" alt="SimplePOS Order Detail" style="width:100%;"></td>
+        </tr>
+    </table>
 <h1>Features</h1>
 <ul>
         <li>Product and Category Management: Add, update, and delete products.</li>
@@ -9,12 +23,6 @@ SimplePOS is a straightforward and efficient Point of Sale (POS) application bui
         <li>Cart Functionality: Add products to the cart and checkout seamlessly.</li>
         <li>Responsive Design: User-friendly interface that works on various devices.</li>
  </ul>
-<img src="ProjectImages/Project Overview.png" alt="SimplePOS Overview" style="width:50%;">
-<img src="ProjectImages/ProductDetail.png" alt="SimplePOS Overview" style="width:50%;">
-<img src="ProjectImages/CustomerList.png" alt="SimplePOS Overview" style="width:50%;">
-<img src="ProjectImages/OrderDetail.png" alt="SimplePOS Overview" style="width:50%;">
-<img src="ProjectImages/OrderView.png" alt="SimplePOS Overview" style="width:50%;">
-
 
 <h1>Getting Started</h1>
 <h2>Prerequisites</h2>
