@@ -4,7 +4,7 @@ SimplePOS is a straightforward and efficient Point of Sale (POS) application bui
 <h1>Project Interfaces Overview</h1>
     <table>
         <tr>
-            <td><img src="ProjectImages/ProjectOverview.png" alt="SimplePOS Overview" style="width:100%;"></td>
+            <td><img src="ProjectImages/Project Overview.png" alt="SimplePOS Overview" style="width:100%;"></td>
             <td><img src="ProjectImages/ProductDetail.png" alt="SimplePOS Product Detail" style="width:100%;"></td>
         </tr>
         <tr>
