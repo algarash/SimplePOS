@@ -1,4 +1,5 @@
-﻿using SimplePOS.Models.Repositories.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SimplePOS.Models.Repositories.Interfaces;
 
 namespace SimplePOS.Models.Repositories.Implementations
 {
@@ -36,6 +37,21 @@ namespace SimplePOS.Models.Repositories.Implementations
             _context.SaveChanges();
 
 
+        }
+
+        public List<Order> GetAllCustomerOrders(int customerId)
+        {
+           return _context.Orders.Include(o => o.OrderItems).Where(o => o.CustomerId == customerId).ToList();
+        }
+
+        public List<Order> GetAllOrders()
+        {
+            return _context.Orders.Include(o => o.OrderItems).ToList();
+        }
+
+        public Order GetOrderById(int id)
+        {
+            return _context.Orders.Include(o => o.OrderItems).ThenInclude(oi => oi.Product).FirstOrDefault(o => o.OrderId == id);
         }
     }
 }

@@ -49,9 +49,12 @@
                 else
                 {
                     <td>
-                        <a href="@Url.Action("OrderList", "Order", new { customerId = customer.CustomerId })">
-                            <strong>@customer.Orders?.Count</strong>
-                        </a>
+                        <h5>
+                            <a style="color:dodgerblue" class="link-text" asp-page="/CustomerOrderList" asp-route-customerId="@customer.CustomerId"
+                               asp-route-customerName="@customer.CustomerFirstName">
+                                <strong>@customer.Orders?.Count</strong>
+                            </a>
+                        </h5>
                     </td>
                 }
 

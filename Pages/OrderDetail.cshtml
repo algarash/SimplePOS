@@ -1,0 +1,36 @@
+﻿@page "{orderId:int}"
+@model OrderDetailModel
+
+@{
+    ViewData["Title"] = "Order Detail";
+}
+
+<h1 class="text-center">Order Detail</h1>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    Order ID: @Model.Order.OrderId
+                </div>
+                <div class="card-body">
+                    <p><strong>Order Total:</strong> @Model.Order.OrderTotal.ToString("C")</p>
+                    <p><strong>Order Placed:</strong> @Model.Order.OrderPlaced.ToString("g")</p>
+                    <p><strong>Customer ID:</strong> @Model.Order.CustomerId</p>
+                    <hr />
+                    <h4>Order Items</h4>
+                    <ul class="list-group">
+                        @if(Model.Order.OrderItems != null)
+                        @foreach (var item in Model.Order.OrderItems)
+                        {
+                            <li class="list-group-item">
+                                    <strong>@item.Product.ProductName</strong> - Quantity: @item.Quantity, Price: @item.Product.Price.ToString("C"), Total: @item.TotalPrice.ToString("C")
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

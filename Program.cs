@@ -24,6 +24,8 @@ builder.Services.AddDbContext<SimplePOSContext>(options =>
         builder.Configuration["ConnectionStrings:SimplePOSDbContextConnection"])
     .EnableSensitiveDataLogging());
 
+builder.Services.AddRazorPages();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,7 +42,8 @@ app.UseSession();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.MapRazorPages();
+//app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
