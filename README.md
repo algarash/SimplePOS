@@ -11,8 +11,10 @@ SimplePOS is a straightforward and efficient Point of Sale (POS) application bui
  </ul>
 <img src="ProjectImages/Project Overview.png" alt="SimplePOS Overview" style="width:50%;">
 <img src="ProjectImages/ProductDetail.png" alt="SimplePOS Overview" style="width:50%;">
-<img src="ProjectImages/OrderView.png" alt="SimplePOS Overview" style="width:50%;">
 <img src="ProjectImages/CustomerList.png" alt="SimplePOS Overview" style="width:50%;">
+<img src="ProjectImages/OrderDetail.png" alt="SimplePOS Overview" style="width:50%;">
+<img src="ProjectImages/OrderView.png" alt="SimplePOS Overview" style="width:50%;">
+
 
 <h1>Getting Started</h1>
 <h2>Prerequisites</h2>
