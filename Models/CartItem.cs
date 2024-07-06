@@ -1,4 +1,6 @@
-﻿namespace SimplePOS.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace SimplePOS.Models
 {
     public class CartItem
     {
@@ -7,5 +9,6 @@
         public int Quantity { get; set; }
         public string? CartId { get; set; }
 
+       
     }
 }

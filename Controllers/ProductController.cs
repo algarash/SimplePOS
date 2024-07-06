@@ -12,13 +12,11 @@ namespace SimplePOS.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly SimplePOSContext _context;
 
-        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository, SimplePOSContext context)
+        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
-            _context = context;
         }
 
         public IActionResult ProductList(string category)
@@ -56,7 +54,7 @@ namespace SimplePOS.Controllers
 
         public IActionResult Create()
         {
-            var categories = _context.Categories.OrderByDescending(c => c.CategoryId).ToList(); // Get all categories
+            var categories = _categoryRepository.AllCategories.OrderByDescending(c => c.CategoryId).ToList(); // Get all categories
             var viewModel = new ProductCreateViewModel { Categories = categories };
             return View(viewModel);
         }
@@ -73,7 +71,7 @@ namespace SimplePOS.Controllers
                 TempData["ProductCreated"] = "New Product is Added";
                 return RedirectToAction("ProductList");
             }
-            var categories = _context.Categories.OrderByDescending(c => c.CategoryId).ToList(); // Get all categories
+            var categories = _categoryRepository.AllCategories.OrderByDescending(c => c.CategoryId).ToList(); // Get all categories
             viewModel.Categories =  categories;
             return View(viewModel); // Re-render with errors and categories
         }
@@ -82,7 +80,7 @@ namespace SimplePOS.Controllers
         {
             ProductCreateViewModel viewModel = new ProductCreateViewModel();
             var product = _productRepository.GetProductById(id);
-            var categories = _context.Categories.OrderByDescending(c => c.CategoryId).ToList(); // Get all categories
+            var categories = _categoryRepository.AllCategories.OrderByDescending(c => c.CategoryId).ToList(); // Get all categories
 
             if (product == null)
             {
