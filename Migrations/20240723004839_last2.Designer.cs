@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimplePOS.Models;
 
@@ -11,9 +12,11 @@ using SimplePOS.Models;
 namespace SimplePOS.Migrations
 {
     [DbContext(typeof(SimplePOSContext))]
-    partial class SimplePOSContextModelSnapshot : ModelSnapshot
+    [Migration("20240723004839_last2")]
+    partial class last2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,10 +112,18 @@ namespace SimplePOS.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
                     b.HasKey("InwardId");
+
+                    b.HasIndex("ProductId");
 
                     b.HasIndex("SupplierId");
 
@@ -122,43 +133,10 @@ namespace SimplePOS.Migrations
                         new
                         {
                             InwardId = 1,
-                            Date = new DateTime(2024, 7, 24, 3, 20, 9, 207, DateTimeKind.Local).AddTicks(436),
-                            SupplierId = 1
-                        });
-                });
-
-            modelBuilder.Entity("SimplePOS.Models.InwardProduct", b =>
-                {
-                    b.Property<int>("InwardProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InwardProductId"));
-
-                    b.Property<int>("InwardId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("InwardProductId");
-
-                    b.HasIndex("InwardId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("InwardProducts");
-
-                    b.HasData(
-                        new
-                        {
-                            InwardProductId = 1,
-                            InwardId = 1,
+                            Date = new DateTime(2024, 7, 23, 3, 48, 37, 939, DateTimeKind.Local).AddTicks(6370),
                             ProductId = 1,
-                            Quantity = 100
+                            Quantity = 100,
+                            SupplierId = 1
                         });
                 });
 
@@ -202,6 +180,35 @@ namespace SimplePOS.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("SimplePOS.Models.Outward", b =>
+                {
+                    b.Property<int>("OutwardId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OutwardId"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("OutwardId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Outwards");
                 });
 
             modelBuilder.Entity("SimplePOS.Models.Product", b =>
@@ -292,32 +299,21 @@ namespace SimplePOS.Migrations
 
             modelBuilder.Entity("SimplePOS.Models.Inward", b =>
                 {
-                    b.HasOne("SimplePOS.Models.Supplier", "Supplier")
-                        .WithMany()
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Supplier");
-                });
-
-            modelBuilder.Entity("SimplePOS.Models.InwardProduct", b =>
-                {
-                    b.HasOne("SimplePOS.Models.Inward", "Inward")
-                        .WithMany("InwardProducts")
-                        .HasForeignKey("InwardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SimplePOS.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Inward");
+                    b.HasOne("SimplePOS.Models.Supplier", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
+
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("SimplePOS.Models.Order", b =>
@@ -350,6 +346,25 @@ namespace SimplePOS.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("SimplePOS.Models.Outward", b =>
+                {
+                    b.HasOne("SimplePOS.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SimplePOS.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("SimplePOS.Models.Product", b =>
                 {
                     b.HasOne("SimplePOS.Models.Category", "Category")
@@ -367,11 +382,6 @@ namespace SimplePOS.Migrations
             modelBuilder.Entity("SimplePOS.Models.Customer", b =>
                 {
                     b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("SimplePOS.Models.Inward", b =>
-                {
-                    b.Navigation("InwardProducts");
                 });
 
             modelBuilder.Entity("SimplePOS.Models.Order", b =>

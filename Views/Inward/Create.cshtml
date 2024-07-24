@@ -1,0 +1,88 @@
+﻿@model InwardCreateViewModel
+
+@{
+    ViewData["Title"] = "Add New Inward Transaction";
+}
+
+<h1>Add New Inward Transaction</h1>
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong> @TempData["AlertMessage"]
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label asp-for="SupplierId" class="control-label"></label>
+                <select asp-for="SupplierId" class="form-control" asp-items="ViewBag.Suppliers"></select>
+                <span asp-validation-for="SupplierId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" type="date" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+
+            <div id="product-list" class="form-group">
+                <label>Products</label>
+                <div class="form-inline">
+                    <select class="form-control product-select">
+                        @foreach (var product in ViewBag.Products as SelectList)
+                        {
+                            <option value="@product.Value">@product.Text</option>
+                        }
+                    </select>
+                    <input type="number" class="form-control product-quantity" placeholder="Quantity" min="1" />
+                    <button type="button" class="btn btn-success add-product">Add Product</button>
+                </div>
+                <div id="selected-products" class="mt-2">
+                    <!-- Product list will be appended here -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('.add-product').addEventListener('click', function () {
+                var productSelect = document.querySelector('.product-select');
+                var quantityInput = document.querySelector('.product-quantity');
+                var productId = productSelect.value;
+                var productName = productSelect.options[productSelect.selectedIndex].text;
+                var quantity = quantityInput.value;
+
+                if (productId && quantity) {
+                    var productList = document.getElementById('selected-products');
+                    var productDiv = document.createElement('div');
+                    productDiv.className = 'form-group';
+
+                    productDiv.innerHTML = `
+                                <input type="hidden" name="Products[${productList.children.length}].ProductId" value="${productId}" />
+                                <input type="hidden" name="Products[${productList.children.length}].Quantity" value="${quantity}" />
+                                <label>${productName} (Quantity: ${quantity})</label>
+                                <button type="button" class="btn btn-danger btn-sm remove-product">Remove</button>
+                            `;
+
+                    productList.appendChild(productDiv);
+                    productSelect.value = '';
+                    quantityInput.value = '';
+
+                    // Add event listener to remove button
+                    productDiv.querySelector('.remove-product').addEventListener('click', function () {
+                        productDiv.remove();
+                    });
+                }
+            });
+        });
+    </script>
+}

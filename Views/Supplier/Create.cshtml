@@ -1,0 +1,30 @@
+﻿@model SimplePOS.ViewModels.SupplierViewModel
+
+@{
+    ViewData["Title"] = "Create Supplier";
+}
+
+<h1>Create Supplier</h1>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Supplier.Name" class="control-label"></label>
+        <input asp-for="Supplier.Name" class="form-control" />
+        <span asp-validation-for="Supplier.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Supplier.ContactInfo" class="control-label"></label>
+        <input asp-for="Supplier.ContactInfo" class="form-control" />
+        <span asp-validation-for="Supplier.ContactInfo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Supplier.Address" class="control-label"></label>
+        <input asp-for="Supplier.Address" class="form-control" />
+        <span asp-validation-for="Supplier.Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<a asp-action="Index">Back to List</a>

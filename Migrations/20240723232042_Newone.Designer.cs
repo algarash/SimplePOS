@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimplePOS.Models;
 
@@ -11,9 +12,11 @@ using SimplePOS.Models;
 namespace SimplePOS.Migrations
 {
     [DbContext(typeof(SimplePOSContext))]
-    partial class SimplePOSContextModelSnapshot : ModelSnapshot
+    [Migration("20240723232042_Newone")]
+    partial class Newone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,7 +125,7 @@ namespace SimplePOS.Migrations
                         new
                         {
                             InwardId = 1,
-                            Date = new DateTime(2024, 7, 24, 3, 20, 9, 207, DateTimeKind.Local).AddTicks(436),
+                            Date = new DateTime(2024, 7, 24, 2, 20, 41, 539, DateTimeKind.Local).AddTicks(1012),
                             SupplierId = 1
                         });
                 });

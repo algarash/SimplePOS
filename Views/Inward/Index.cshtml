@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SimplePOS.Models.Inward>
+
+@{
+    ViewData["Title"] = "Inward Transactions";
+}
+
+<h1>Inward Transactions</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Add New Inward Transaction</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Supplier</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Supplier.Name</td>
+                <td>@item.Date.ToShortDateString()</td>
+                <td>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.InwardId">Details</a>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.InwardId">Edit</a>
+                    <form method="post" asp-action="Delete" asp-route-id="@item.InwardId" class="d-inline" onsubmit="return confirmDelete();">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this inward transaction?");
+        }
+    </script>
+}

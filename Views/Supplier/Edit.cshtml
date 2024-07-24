@@ -1,0 +1,40 @@
+﻿@model SimplePOS.ViewModels.SupplierViewModel
+
+@{
+    ViewData["Title"] = "Update Supplier";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center my-4">
+        <h1 class="mb-0">Update Supplier</h1>
+    </div>
+
+    <form asp-action="Edit" method="post">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Supplier.Name" class="control-label"></label>
+            <input asp-for="Supplier.Name" class="form-control" />
+            <span asp-validation-for="Supplier.Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Supplier.ContactInfo" class="control-label"></label>
+            <input asp-for="Supplier.ContactInfo" class="form-control" />
+            <span asp-validation-for="Supplier.ContactInfo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Supplier.Address" class="control-label"></label>
+            <input asp-for="Supplier.Address" class="form-control" />
+            <span asp-validation-for="Supplier.Address" class="text-danger"></span>
+        </div>
+
+        <input type="hidden" asp-for="Supplier.SupplierId" />
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a asp-controller="Supplier" asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

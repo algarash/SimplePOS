@@ -1,0 +1,47 @@
+﻿@model InwardEditViewModel
+
+@{
+    ViewData["Title"] = "Edit Inward Transaction";
+}
+
+<h1>Edit Inward Transaction</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="InwardId" />
+
+            <div class="form-group">
+                <label asp-for="SupplierId" class="control-label"></label>
+                @Html.DropDownListFor(m => m.SupplierId, (SelectList)ViewBag.Suppliers, "Select Supplier", new { @class = "form-control" })
+                <span asp-validation-for="SupplierId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" type="date" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+
+            <div id="product-list" class="form-group">
+                <label>Products</label>
+                @for (int i = 0; i < Model.Products.Count; i++)
+                {
+                    <div class="form-group">
+                        <label>Select Product</label>
+                        @Html.DropDownListFor(m => m.Products[i].ProductId, (SelectList)ViewBag.Products, "Select Product", new { @class = "form-control" })
+                        <input type="number" class="form-control" name="Products[@i].Quantity" value="@Model.Products[i].Quantity" />
+                    </div>
+                }
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

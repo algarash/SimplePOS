@@ -1,0 +1,77 @@
+﻿@model SimplePOS.ViewModels.SupplierListViewModel
+
+@{
+    ViewData["Title"] = "Suppliers";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center my-4">
+        <h1 class="mb-0">Suppliers</h1>
+        <a asp-controller="Supplier" asp-action="Create" class="btn btn-primary btn-green">+ Add New Supplier</a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert alert-success">
+            <strong>Success!</strong> @Model.Message
+        </div>
+    }
+
+    <div class="row">
+        @foreach (var supplier in Model.Suppliers)
+        {
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">@supplier.Name</h5>
+                        <p class="card-text">
+                            <strong>Contact:</strong> @supplier.ContactInfo<br />
+                            <strong>Address:</strong> @supplier.Address
+                        </p>
+                        <a asp-action="Edit" asp-route-id="@supplier.SupplierId" class="btn btn-warning">Edit</a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-supplier-id="@supplier.SupplierId" data-supplier-name="@supplier.Name">Delete</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Supplier</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete the supplier <strong id="supplierName"></strong>?
+            </div>
+            <div class="modal-footer">
+                <form id="deleteForm" method="post" asp-action="DeleteConfirmed" asp-controller="Supplier">
+                    <input type="hidden" name="id" id="supplierId" value="" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var deleteModal = document.getElementById('deleteModal');
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var supplierId = button.getAttribute('data-supplier-id');
+            var supplierName = button.getAttribute('data-supplier-name');
+
+            var modalSupplierId = deleteModal.querySelector('#supplierId');
+            var modalSupplierName = deleteModal.querySelector('#supplierName');
+
+            modalSupplierId.value = supplierId;
+            modalSupplierName.textContent = supplierName;
+        });
+    </script>
+}
