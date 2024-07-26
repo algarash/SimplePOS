@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SimplePOS.Models.Repositories.Interfaces;
+using SimplePOS.ViewModels;
 
 namespace SimplePOS.Models.Repositories.Implementations
 {
@@ -63,6 +64,23 @@ namespace SimplePOS.Models.Repositories.Implementations
         public void Save()
         { 
             _context.SaveChanges();
+        }
+        // Add the method to get stock balances
+        public IEnumerable<StockBalanceViewModel> GetStockBalances()
+        {
+            var stockBalances = _context.Products
+                .Select(p => new StockBalanceViewModel
+                {
+                    ProductId = p.ProductId,
+                    ProductName = p.ProductName,
+                    CategoryName = p.Category.CategoryName,
+                    Inwards = _context.InwardProducts.Where(i => i.ProductId == p.ProductId).Sum(i => i.Quantity),
+                    Outwards = _context.Outwards.Where(o => o.ProductId == p.ProductId).Sum(o => o.Quantity),
+                    InHand = _context.InwardProducts.Where(i => i.ProductId == p.ProductId).Sum(i => i.Quantity) -
+                             _context.Outwards.Where(o => o.ProductId == p.ProductId).Sum(o => o.Quantity)
+                }).ToList();
+
+            return stockBalances;
         }
     }
 }

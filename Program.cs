@@ -15,6 +15,7 @@ builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IInwardRepository, InwardRepository>();
 builder.Services.AddScoped<IInwardProductRepository, InwardProductRepository>();
+builder.Services.AddScoped<IOutwardRepository, OutwardRepository>();
 
 // Add the new repositories
 builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();

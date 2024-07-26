@@ -1,0 +1,65 @@
+﻿@model SimplePOS.Models.Outward
+
+@{
+    ViewData["Title"] = "Outward Transaction Details";
+}
+
+<h2>Outward Transaction Details</h2>
+
+<div>
+    <h4>Outward</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Outward ID
+        </dt>
+        <dd class="col-sm-10">
+            @Model.OutwardId
+        </dd>
+        <dt class="col-sm-2">
+            Order ID
+        </dt>
+        <dd class="col-sm-10">
+            @Model.OrderId
+        </dd>
+        <dt class="col-sm-2">
+            Product ID
+        </dt>
+        <dd class="col-sm-10">
+            @Model.ProductId
+        </dd>
+        <dt class="col-sm-2">
+            Product Name
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Product?.ProductName
+        </dd>
+        <dt class="col-sm-2">
+            Quantity
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Quantity
+        </dd>
+        <dt class="col-sm-2">
+            Date
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Date.ToString("g")
+        </dd>
+        <dt class="col-sm-2">
+            Customer ID
+        </dt>
+        <dd class="col-sm-10">
+            @Model.CustomerId
+        </dd>
+        <dt class="col-sm-2">
+            Customer Name
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Customer?.CustomerFirstName @Model.Customer?.CustomerLastName
+        </dd>
+    </dl>
+    <div>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

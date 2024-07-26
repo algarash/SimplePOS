@@ -1,0 +1,48 @@
+﻿@model SimplePOS.ViewModels.OutwardListViewModel
+
+@{
+    ViewData["Title"] = "Outward Transactions";
+}
+
+<h2>Outward Transactions</h2>
+
+@if (Model.Outwards != null && Model.Outwards.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Outward ID</th>
+                <th>Order ID</th>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Date</th>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var outward in Model.Outwards)
+            {
+                <tr>
+                    <td>@outward.OutwardId</td>
+                    <td>@outward.OrderId</td>
+                    <td>@outward.ProductId</td>
+                    <td>@outward.Product?.ProductName</td>
+                    <td>@outward.Quantity</td>
+                    <td>@outward.Date.ToString("g")</td>
+                    <td>@outward.CustomerId</td>
+                    <td>@outward.Customer?.CustomerFirstName @outward.Customer?.CustomerLastName</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@outward.OutwardId" class="btn btn-primary">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No outward transactions found.</p>
+}

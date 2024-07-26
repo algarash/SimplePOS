@@ -4,9 +4,7 @@ namespace SimplePOS.Models
 {
     public class SimplePOSContext : DbContext
     {
-        public SimplePOSContext(DbContextOptions<SimplePOSContext> options) : base(options)
-        {
-        }
+        public SimplePOSContext(DbContextOptions<SimplePOSContext> options) : base(options) { }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -17,10 +15,11 @@ namespace SimplePOS.Models
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Inward> Inwards { get; set; }
         public DbSet<InwardProduct> InwardProducts { get; set; }
+        public DbSet<Outward> Outwards { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure composite key for OrderItem
             modelBuilder.Entity<OrderItem>()
                 .HasKey(oi => new { oi.OrderId, oi.ProductId });
 
@@ -34,7 +33,6 @@ namespace SimplePOS.Models
                 .WithMany(p => p.OrderItems)
                 .HasForeignKey(oi => oi.ProductId);
 
-            // Configure relationships for Inward and InwardProduct
             modelBuilder.Entity<InwardProduct>()
                 .HasKey(ip => ip.InwardProductId);
 
@@ -48,47 +46,65 @@ namespace SimplePOS.Models
                 .WithMany()
                 .HasForeignKey(ip => ip.ProductId);
 
-            // Seed Categories
+            modelBuilder.Entity<Outward>()
+      .HasKey(o => o.OutwardId);
+
+            modelBuilder.Entity<Outward>()
+                .HasOne(o => o.Order)
+                .WithMany()
+                .HasForeignKey(o => o.OrderId)
+                .OnDelete(DeleteBehavior.NoAction); // Modify this line
+
+            modelBuilder.Entity<Outward>()
+                .HasOne(o => o.Product)
+                .WithMany()
+                .HasForeignKey(o => o.ProductId)
+                .OnDelete(DeleteBehavior.NoAction); // Modify this line
+
+            modelBuilder.Entity<Outward>()
+                .HasOne(o => o.Customer)
+                .WithMany()
+                .HasForeignKey(o => o.CustomerId)
+                .OnDelete(DeleteBehavior.NoAction); // Modify this line
+
+
+            // Seed data
             var CategoryList = new Category[]
             {
                 new Category { CategoryId = 1, CategoryName = "Milk", CategoryDescription = "Milk from a cow lol" }
             };
             modelBuilder.Entity<Category>().HasData(CategoryList);
 
-            // Seed Products
             var ProductList = new Product[]
             {
                 new Product { ProductId = 1, ProductName = "Milk", ProductDescription = "Milk from a cow lol", ProductImageUrl = "https://www.heritagefoods.in/blog/wp-content/uploads/2020/12/shutterstock_539045662.jpg", CategoryId = 1 }
             };
             modelBuilder.Entity<Product>().HasData(ProductList);
 
-            // Seed Suppliers
             var SupplierList = new Supplier[]
             {
                 new Supplier { SupplierId = 1, Name = "Supplier A", ContactInfo = "123-456-7890", Address = "123 Supplier St" }
             };
             modelBuilder.Entity<Supplier>().HasData(SupplierList);
 
-            // Seed Inwards
             var InwardList = new Inward[]
             {
                 new Inward
                 {
                     InwardId = 1,
-                    SupplierId = 1, // Ensure this ID exists in your database
+                    SupplierId = 1,
                     Date = DateTime.Now
                 }
             };
             modelBuilder.Entity<Inward>().HasData(InwardList);
 
-            // Seed InwardProducts
             var InwardProductList = new InwardProduct[]
             {
                 new InwardProduct
                 {
                     InwardProductId = 1,
-                    InwardId = 1, // Ensure this ID exists in your database
-                    ProductId = 1,  // Ensure this ID exists in your database
+                    InwardId = 1,
+                    ProductId = 1,
                     Quantity = 100
                 }
             };

@@ -1,4 +1,6 @@
-﻿namespace SimplePOS.Models.Repositories.Interfaces
+﻿using SimplePOS.ViewModels;
+
+namespace SimplePOS.Models.Repositories.Interfaces
 {
     public interface IProductRepository
     {
@@ -7,6 +9,7 @@
         void AddProduct(Product product);
         void UpdateProduct(Product product);
         void DeleteProduct(int id);
+        IEnumerable<StockBalanceViewModel> GetStockBalances(); // Add this line
 
     }
 }

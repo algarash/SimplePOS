@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SimplePOS.ViewModels.StockBalanceViewModel>
+
+@{
+    ViewData["Title"] = "Stock Balance";
+}
+
+<h2>Stock Balance</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Inwards</th>
+            <th>Outwards</th>
+            <th>In Hand</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@item.ProductName</td>
+                <td>@item.CategoryName</td>
+                <td>@item.Inwards</td>
+                <td>@item.Outwards</td>
+                <td>@item.InHand</td>
+            </tr>
+        }
+    </tbody>
+</table>
